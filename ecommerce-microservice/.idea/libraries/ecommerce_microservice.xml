@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ecommerce-microservice">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/OrderService.zip!/" />
+      <root url="jar://$PROJECT_DIR$/ProductService.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UserService.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
