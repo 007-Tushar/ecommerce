@@ -1,6 +1,7 @@
 package com.userservice.mapper;
 
 import com.userservice.dto.UserDto;
+import com.userservice.dto.UserRequest;
 import com.userservice.entities.User;
 import org.springframework.stereotype.Component;
 
@@ -8,14 +9,14 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
 
     // Convert DTO to Entity
-    public User toEntity(UserDto userDto) {
+    public User toEntity(UserRequest userRequest) {
         return new User(
-                userDto.getFirstName(),
-                userDto.getLastName(),
-                userDto.getEmail(),
-                userDto.getPassword(),
-                userDto.getPhone(),
-                userDto.getRole());
+                userRequest.getFirstName(),
+                userRequest.getLastName(),
+                userRequest.getEmail(),
+                userRequest.getPassword(),
+                userRequest.getPhone(),
+                userRequest.getRole());
     }
 
     // Convert Entity to DTO
@@ -25,7 +26,6 @@ public class UserMapper {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
-                user.getPassword(),
                 user.getPhone(),
                 user.getRole());
     }

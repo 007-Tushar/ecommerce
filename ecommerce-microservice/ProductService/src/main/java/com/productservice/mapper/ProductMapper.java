@@ -1,5 +1,6 @@
 package com.productservice.mapper;
 
+import com.productservice.dto.OrderItemDto;
 import com.productservice.dto.ProductDto;
 import com.productservice.entity.Product;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,13 @@ public class ProductMapper {
                 product.getProductId(),
                 product.getProductName(),
                 product.getPrice(),
+                product.getStock()
+        );
+    }
+
+    public OrderItemDto toOrderItemDto(Product product){
+        return new OrderItemDto(
+                product.getProductId(),
                 product.getStock()
         );
     }

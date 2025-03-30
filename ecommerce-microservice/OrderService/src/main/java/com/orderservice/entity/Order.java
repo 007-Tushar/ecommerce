@@ -5,30 +5,36 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @Column(name = "product_id")
-    private Long productId;
-
     @Column(name = "user_id")
     private Long userId;
 
-    private int quantity;
-
+    @Column(name = "total_price")
     private Double totalPrice;
 
-    public Order(Long productId, Long userId, int quantity, Double totalPrice) {
-        this.productId = productId;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems;
+
+    @ManyToMany
+    @Transient
+    private List<Product> products;
+
+    public Order(Long userId, Double totalPrice, List<OrderItem> orderItems, List<Product> products) {
         this.userId = userId;
-        this.quantity = quantity;
         this.totalPrice = totalPrice;
+        this.orderItems = orderItems;
+        this.products = products;
     }
 }

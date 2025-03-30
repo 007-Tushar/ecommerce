@@ -1,6 +1,7 @@
 package com.userservice.services.impl;
 
 import com.userservice.dto.UserDto;
+import com.userservice.dto.UserRequest;
 import com.userservice.entities.User;
 import com.userservice.mapper.UserMapper;
 import com.userservice.repository.UserRepository;
@@ -40,13 +41,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto createUser(UserDto userDto) {
+    public UserDto createUser(UserRequest userRequest) {
 
-        if (userRepository.existsByEmail(userDto.getEmail())) {
+        if (userRepository.existsByEmail(userRequest.getEmail())) {
             throw new RuntimeException("Error! Email already in use.");
         }
 
-        User user = userMapper.toEntity(userDto);
+        User user = userMapper.toEntity(userRequest);
         User savedUser = userRepository.save(user);
         return userMapper.toDto(savedUser);
     }

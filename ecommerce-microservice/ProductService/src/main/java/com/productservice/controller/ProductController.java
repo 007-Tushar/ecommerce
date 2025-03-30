@@ -1,5 +1,7 @@
 package com.productservice.controller;
 
+import com.productservice.dto.OrderItemDto;
+import com.productservice.dto.OrderItemRequest;
 import com.productservice.dto.ProductDto;
 import com.productservice.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,10 @@ public class ProductController {
         this.productService = productService;
     }
 
+    //
+    // Get Product by Product ID
+    //
+
     @GetMapping("/{productId}")
     public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId){
         try {
@@ -28,10 +34,19 @@ public class ProductController {
         }
     }
 
+    //
+    // Get All Products
+    //
+
     @GetMapping
     public ResponseEntity<List<ProductDto>> getProductAll(){
         return ResponseEntity.ok(productService.getProductAll());
     }
+
+
+    //
+    // Create a Product
+    //
 
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
@@ -39,4 +54,16 @@ public class ProductController {
         return ResponseEntity.ok(createdProduct);
     }
 
+    //
+    // Get stock and product price
+    //
+
+    @GetMapping("/orderItem")
+    public ResponseEntity<OrderItemDto> orderItemDto(@RequestBody OrderItemRequest orderItemRequest){
+        try{
+            return ResponseEntity.ok(productService.orderItemData(orderItemRequest.getProductId(), orderItemRequest.getQuantity()));
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }

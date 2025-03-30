@@ -1,6 +1,7 @@
 package com.userservice.controller;
 
 import com.userservice.dto.UserDto;
+import com.userservice.dto.UserRequest;
 import com.userservice.services.PasswordService;
 import com.userservice.services.UserService;
 import jakarta.validation.Valid;
@@ -32,10 +33,10 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-        userDto.setPassword(passwordService.hashPassword(userDto.getPassword()));
-        UserDto createdUser = userService.createUser(userDto); // Throws exception if user exists
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserRequest userRequest) {
+        userRequest.setPassword(passwordService.hashPassword(userRequest.getPassword()));
+        UserDto createdUser = userService.createUser(userRequest); // Throws exception if user exists
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 

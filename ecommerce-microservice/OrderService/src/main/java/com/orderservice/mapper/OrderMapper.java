@@ -1,25 +1,22 @@
 package com.orderservice.mapper;
 
 import com.orderservice.dto.OrderDto;
+import com.orderservice.dto.OrderRequest;
 import com.orderservice.entity.Order;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderMapper {
     public OrderDto toDto(Order order){
         return new OrderDto(
                 order.getOrderId(),
-                order.getProductId(),
                 order.getUserId(),
-                order.getQuantity(),
-                order.getTotalPrice()
+                order.getTotalPrice(),
+                order.getProducts()
         );
     }
 
-    public Order toEntity(OrderDto orderDto){
-        return new Order(
-                orderDto.getProductId(),
-                orderDto.getUserId(),
-                orderDto.getQuantity(),
-                orderDto.getTotalPrice()
-        );
+    public Order toEntity(OrderRequest orderRequest){
+        return null;
     }
 }

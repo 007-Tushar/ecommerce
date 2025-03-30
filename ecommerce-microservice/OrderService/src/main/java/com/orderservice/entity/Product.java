@@ -1,23 +1,18 @@
-package com.productservice.entity;
+package com.orderservice.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+
     private Long productId;
-    @Column(name = "product_name")
     private String productName;
     private Double price;
     private Long stock;

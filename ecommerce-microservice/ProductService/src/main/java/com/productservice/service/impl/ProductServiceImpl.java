@@ -1,6 +1,7 @@
 package com.productservice.service.impl;
 
 
+import com.productservice.dto.OrderItemDto;
 import com.productservice.dto.ProductDto;
 import com.productservice.entity.Product;
 import com.productservice.mapper.ProductMapper;
@@ -24,7 +25,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto getProductById(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("No Product found with ID: " + productId));
+                .orElseThrow(() ->
+                        new RuntimeException("No Product found with ID: " + productId));
         return productMapper.toDto(product);
     }
 
@@ -41,5 +43,20 @@ public class ProductServiceImpl implements ProductService {
         Product product = productMapper.toEntity(productDto);
         Product savedproduct = productRepository.save(product);
         return productMapper.toDto(savedproduct);
+    }
+
+    @Override
+    public OrderItemDto orderItemData(Long productId, int quantity) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() ->
+                        new RuntimeException("No Product found with ID: " + productId));
+        OrderItemDto orderItemDto = productMapper.toOrderItemDto(product);
+        if (quantity <= product.getStock()){
+            double totalPrice = quantity * product.getPrice();
+            orderItemDto.setPrice(totalPrice);
+            return orderItemDto;
+        } else {
+            throw new RuntimeException("Quantity not available");
+        }
     }
 }
