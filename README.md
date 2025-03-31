@@ -16,6 +16,7 @@ This project consists of the following services:
 1. **User Service**: Manages user-related operations.
 2. **Product Service**: Handles product details and inventory.
 3. **Order Service**: Processes customer orders and interactions.
+4. **Registry Service**: Manages service registration and discovery using Eureka Server.
 
 ## Features
 - **Service Discovery**: Eureka handles service registration and discovery.
@@ -26,11 +27,11 @@ This project consists of the following services:
 ## Setup Instructions
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/007-Tushar/ecommerce.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd <project-folder>
+   cd ecommerce-microservice
    ```
 3. Build and run each service separately:
    ```sh
