@@ -28,9 +28,5 @@ public class OrderController {
         return ResponseEntity.ok(orderService.createOrder(orderRequest));
     }
 
-    @GetMapping("/product/{id}")
-    public ResponseEntity<List<OrderDto>> getAllOrdersOfProduct(@PathVariable Long productId){
-        return ResponseEntity.ok(orderService.getAllOrderByProductId(productId));
-    }
 
 }

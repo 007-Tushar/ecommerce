@@ -58,12 +58,14 @@ public class ProductController {
     // Get stock and product price
     //
 
-    @GetMapping("/orderItem")
-    public ResponseEntity<OrderItemDto> orderItemDto(@RequestBody OrderItemRequest orderItemRequest){
+    @PostMapping("/orderItem")
+    public ResponseEntity<OrderItemDto> createOrderItem(@RequestBody OrderItemRequest orderItemRequest){
         try{
+            System.out.println("in controller");
             return ResponseEntity.ok(productService.orderItemData(orderItemRequest.getProductId(), orderItemRequest.getQuantity()));
         } catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
 }

@@ -15,5 +15,4 @@ public interface OrderService {
 
     List<OrderDto> getAllOrderByUserId(Long userId);
 
-    List<OrderDto> getAllOrderByProductId(Long productId);
 }

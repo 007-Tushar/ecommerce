@@ -1,16 +1,21 @@
 package com.orderservice.service;
 
-
-import com.orderservice.entity.Product;
+import com.orderservice.dto.OrderItemDto;
+import com.orderservice.dto.OrderItemRequest;
+import com.orderservice.dto.ProductDto;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "SERVICE-PRODUCT")
 public interface ProductClient {
 
-    @GetMapping("/orders/{orderId}/products") // Define the correct endpoint URL for fetching products for an order
-    List<Product> getProductsOfOrder(@PathVariable("orderId") Long orderId); // Use @PathVariable with parameter name
+    @PostMapping("/product/orderItem")
+    ResponseEntity<OrderItemDto> createOrderItem(@RequestBody OrderItemRequest orderItemRequest);
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId);
 }

@@ -50,10 +50,11 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() ->
                         new RuntimeException("No Product found with ID: " + productId));
-        OrderItemDto orderItemDto = productMapper.toOrderItemDto(product);
+        OrderItemDto orderItemDto = productMapper.toOrderItemDto(product);  //
         if (quantity <= product.getStock()){
             double totalPrice = quantity * product.getPrice();
             orderItemDto.setPrice(totalPrice);
+            orderItemDto.setQuantity(quantity);
             return orderItemDto;
         } else {
             throw new RuntimeException("Quantity not available");

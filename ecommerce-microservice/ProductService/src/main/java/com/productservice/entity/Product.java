@@ -22,6 +22,10 @@ public class Product {
     private Double price;
     private Long stock;
 
+    public Product(String productName) {
+        this.productName = productName;
+    }
+
     public Product(String productName, Double price, Long stock) {
         this.productName = productName;
         this.price = price;

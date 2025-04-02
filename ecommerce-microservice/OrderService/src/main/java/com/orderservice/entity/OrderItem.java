@@ -14,11 +14,16 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long OrderItemId;
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+//    @OneToOne(mappedBy = "order_item")
+//    private Order order;
     @Column(name = "product_id")
     private Long productId;
     private int quantity;
     private Double price;
+
+    public OrderItem(Long productId, int quantity, Double price) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
+    }
 }

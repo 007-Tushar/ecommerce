@@ -26,9 +26,8 @@ public class ProductMapper {
     }
 
     public OrderItemDto toOrderItemDto(Product product){
-        return new OrderItemDto(
-                product.getProductId(),
-                product.getStock()
+        return new  OrderItemDto(
+                product.getProductId()
         );
     }
 }

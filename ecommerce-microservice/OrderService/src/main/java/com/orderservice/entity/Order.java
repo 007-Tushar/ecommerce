@@ -1,5 +1,6 @@
 package com.orderservice.entity;
 
+import com.orderservice.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -24,17 +25,18 @@ public class Order {
     @Column(name = "total_price")
     private Double totalPrice;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_order_id", referencedColumnName = "orderId")
     private List<OrderItem> orderItems;
 
     @ManyToMany
     @Transient
-    private List<Product> products;
+    private List<ProductDto> productDtos;
 
-    public Order(Long userId, Double totalPrice, List<OrderItem> orderItems, List<Product> products) {
+    public Order(Long userId, Double totalPrice, List<OrderItem> orderItems, List<ProductDto> productDtos) {
         this.userId = userId;
         this.totalPrice = totalPrice;
         this.orderItems = orderItems;
-        this.products = products;
+        this.productDtos = productDtos;
     }
 }
