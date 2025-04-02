@@ -10,6 +10,7 @@ This project is a microservices-based architecture built using Java and Spring B
 - **Eureka Client & Eureka Server**: Service discovery and registration.
 - **OpenFeign Client**: For easy inter-service communication.
 - **Microservices Architecture**: Independent services interacting seamlessly.
+- **MySQL**: Database for storing data.
 
 ## Microservices
 This project consists of the following services:
@@ -22,7 +23,6 @@ This project consists of the following services:
 - **Service Discovery**: Eureka handles service registration and discovery.
 - **Inter-Service Communication**: OpenFeign simplifies API calls between services.
 - **Scalability**: Independent services allow flexible scaling.
-- **Resilience**: Spring Cloud tools help manage failures effectively.
 
 ## Setup Instructions
 1. Clone the repository:
@@ -33,12 +33,21 @@ This project consists of the following services:
    ```sh
    cd ecommerce-microservice
    ```
-3. Build and run each service separately:
+3. Create a MySQL database named `ecommerce`:
+   ```sql
+   CREATE DATABASE ecommerce;
+   ```
+4. MySQL Configuration:
+   - **Port**: `3306`
+   - **User**: `root`
+   - **Password**: `root` (You can change this in `application.properties`)
+
+5. Build and run each service separately:
    ```sh
    mvn clean install
    mvn spring-boot:run
    ```
-4. Ensure the Eureka Server is running before launching other services.
+6. Ensure the Eureka Server (RegistryService) is running before launching other services.
 
 ## Current Status
 This project is **actively under development**, and new features are being added.
